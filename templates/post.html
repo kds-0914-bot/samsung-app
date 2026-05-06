@@ -4,6 +4,10 @@
 
 {% block extra_css %}
 <style>
+    body {
+        background: #f5f7fc !important;
+    }
+
     .post-container {
         background: white;
         padding: 2rem;
@@ -21,19 +25,19 @@
     .post-header h1 {
         color: #333;
         margin-bottom: 1rem;
-        font-size: 2rem;
+        font-size: 1.2rem;
     }
 
     .post-metadata {
         display: flex;
         gap: 2rem;
         flex-wrap: wrap;
-        font-size: 0.95rem;
+        font-size: 0.8rem;
         color: #666;
     }
 
     .post-content {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         line-height: 1.8;
         color: #333;
         margin-bottom: 2rem;
@@ -50,7 +54,7 @@
     .comments-section h2 {
         color: #333;
         margin-bottom: 1.5rem;
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
     .comment-form {
@@ -65,7 +69,7 @@
         padding: 1rem;
         border: 1px solid #ddd;
         border-radius: 5px;
-        font-size: 1rem;
+        font-size: 0.85rem;
         font-family: inherit;
         margin-bottom: 1rem;
         resize: vertical;
@@ -73,13 +77,14 @@
     }
 
     .comment-form button {
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 0.6rem 1.2rem;
+        background: linear-gradient(135deg, #5f6fbf 0%, #4a5aa0 100%);
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         font-weight: 600;
+        font-size: 0.85rem;
         transition: transform 0.2s;
     }
 
@@ -104,10 +109,11 @@
         font-weight: 600;
         color: #333;
         margin-bottom: 0.5rem;
+        font-size: 0.85rem;
     }
 
     .comment-meta {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         color: #999;
         margin-bottom: 1rem;
     }
@@ -117,14 +123,16 @@
         line-height: 1.6;
         word-break: break-word;
         white-space: pre-wrap;
+        font-size: 0.85rem;
     }
 
     .back-link {
         display: inline-block;
         margin-bottom: 2rem;
-        color: #667eea;
+        color: #5f6fbf;
         text-decoration: none;
         font-weight: 600;
+        font-size: 0.85rem;
     }
 
     .back-link:hover {
@@ -137,7 +145,19 @@
         }
 
         .post-header h1 {
-            font-size: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .post-metadata {
+            font-size: 0.7rem;
+        }
+
+        .post-content {
+            font-size: 0.8rem;
+        }
+
+        .comments-section h2 {
+            font-size: 0.9rem;
         }
 
         .comment-form {

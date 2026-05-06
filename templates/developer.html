@@ -20,13 +20,13 @@
 
     .profile-header h1 {
         color: #333;
-        font-size: 2rem;
+        font-size: 1.3rem;
         margin-bottom: 0.5rem;
     }
 
     .profile-header p {
-        color: #667eea;
-        font-size: 1.1rem;
+        color: #5f6fbf;
+        font-size: 0.9rem;
         margin-bottom: 1.5rem;
     }
 
@@ -46,15 +46,15 @@
 
     .info-card strong {
         display: block;
-        color: #667eea;
-        font-size: 0.85rem;
+        color: #5f6fbf;
+        font-size: 0.7rem;
         margin-bottom: 0.3rem;
         text-transform: uppercase;
     }
 
     .info-card span {
         color: #333;
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     .section {
@@ -67,10 +67,10 @@
 
     .section h2 {
         color: #333;
-        font-size: 1.8rem;
+        font-size: 1.1rem;
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
-        border-bottom: 2px solid #667eea;
+        border-bottom: 2px solid #5f6fbf;
     }
 
     .skill-categories {
@@ -83,19 +83,19 @@
         background: #f8f9fa;
         padding: 1.5rem;
         border-radius: 10px;
-        border-left: 4px solid #667eea;
+        border-left: 4px solid #5f6fbf;
         transition: all 0.3s;
     }
 
     .skill-category:hover {
         background: white;
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 5px 15px rgba(95, 111, 191, 0.2);
     }
 
     .skill-category h3 {
         color: #333;
         margin-bottom: 1rem;
-        font-size: 1.2rem;
+        font-size: 0.95rem;
     }
 
     .skill-category ul {
@@ -103,22 +103,23 @@
     }
 
     .skill-category li {
-        padding: 0.5rem 0;
+        padding: 0.4rem 0;
         color: #666;
         position: relative;
-        padding-left: 1.5rem;
+        padding-left: 1.2rem;
+        font-size: 0.8rem;
     }
 
     .skill-category li:before {
         content: "▸";
         position: absolute;
         left: 0;
-        color: #667eea;
+        color: #5f6fbf;
         font-weight: bold;
     }
 
     .expertise {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #5f6fbf 0%, #4a5aa0 100%);
         color: white;
         padding: 2rem;
         border-radius: 10px;
@@ -128,21 +129,25 @@
 
     .expertise h3 {
         margin-bottom: 1rem;
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     .expertise p {
         line-height: 1.8;
-        font-size: 0.95rem;
+        font-size: 0.85rem;
     }
 
     @media (max-width: 640px) {
         .profile-header {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
         }
 
         .profile-header h1 {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .profile-header p {
+            font-size: 0.8rem;
         }
 
         .profile-info {
@@ -154,7 +159,7 @@
         }
 
         .section h2 {
-            font-size: 1.5rem;
+            font-size: 1rem;
         }
 
         .skill-categories {
@@ -167,14 +172,9 @@
 {% block content %}
 <div class="profile-container">
     <div class="profile-header">
-        <h1>👨‍💻 DaeseokKim</h1>
-        <p>Cloud Infrastructure & Full-Stack Developer</p>
+        <h1>👨‍💻 삼성서울병원 지원자 정보</h1>
 
         <div class="profile-info">
-            <div class="info-card">
-                <strong>부서</strong>
-                <span>첨단인프라운영팀</span>
-            </div>
             <div class="info-card">
                 <strong>이름</strong>
                 <span>김대석</span>
@@ -184,12 +184,12 @@
                 <span>1986.09.14</span>
             </div>
             <div class="info-card">
-                <strong>이메일</strong>
-                <span>kds5192@gmail.com</span>
+                <strong>수험번호</strong>
+                <span>AAH00007</span>
             </div>
             <div class="info-card">
-                <strong>지원자번호</strong>
-                <span>SK-2026-DS</span>
+                <strong>이메일</strong>
+                <span>kimdaesuk@naver.com</span>
             </div>
         </div>
     </div>
@@ -276,11 +276,11 @@
 
     <div class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
         <h2 style="color: white; border-bottom-color: rgba(255, 255, 255, 0.3);">📚 학습 및 발전</h2>
-        <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1rem;">
+        <p style="font-size: 0.85rem; line-height: 1.8; margin-bottom: 1rem;">
             현재 클라우드 네이티브 아키텍처, Kubernetes, 마이크로서비스 설계 등 최신 기술을 지속적으로 학습.
             의료 정보 보안(HIPAA), 데이터 보호 규정(GDPR), 재해 복구 계획 등 엔터프라이즈 환경의 요구사항 충족 시스템 구축에 관심.
         </p>
-        <p style="font-size: 0.95rem; opacity: 0.95;">
+        <p style="font-size: 0.8rem; opacity: 0.95;">
             문제 해결 능력, 팀 협업, 기술 문서화를 중시하며, 사용자 중심의 서비스 개발을 지향합니다.
         </p>
     </div>

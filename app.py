@@ -65,9 +65,12 @@ def login_required(f):
 
 def init_db():
     """Initialize database with sample data"""
-    with app.app_context():
-        db.drop_all()
+    try:
         db.create_all()
+
+        # Check if demo user already exists
+        if User.query.filter_by(username='demo').first():
+            return  # Database already initialized
 
         # Create categories
         categories = [
@@ -81,9 +84,9 @@ def init_db():
 
         # Create sample user
         sample_user = User(
-            username='demo',
+            username='AAH00007',
             password=generate_password_hash('demo123'),
-            email='demo@samsung.co.kr'
+            email='kimdaesuk@naver.com'
         )
         db.session.add(sample_user)
         db.session.commit()
@@ -91,29 +94,69 @@ def init_db():
         # Create sample posts
         posts = [
             Post(
-                title='Azure 클라우드 인프라 구축 완료',
-                content='Samsung Seoul Hospital의 클라우드 인프라가 Microsoft Azure에 성공적으로 구축되었습니다.',
+                title='HIMSS CCMM 6단계 세계 최초 인증 획득',
+                content='삼성서울병원이 미국 보건의료정보관리시스템협회(HIMSS)가 주관하는 의료 서비스 연속성 성숙도 모델(CCMM) 6단계 인증을 세계 최초로 획득했습니다.\n\n진료 전·후 데이터 통합 관리 및 웨어러블 연동 구현으로 HIMSS 디지털 성숙도 모델 전 분야 인증을 받았으며, 이는 세계 유일한 성과입니다.\n\nCCMM은 환자가 필요할 때 끊김 없이 진료를 받을 수 있도록 병원과 병원, 병원과 환자 사이에 진료 정보가 안전하고 자유롭게 오가는 전용 고속도로가 얼마나 잘 구축되어 있는지를 평가하는 것입니다.',
                 category_id=1,
                 user_id=sample_user.id,
-                views=125
+                views=245
             ),
             Post(
-                title='AI 기반 스마트 시스템 도입',
-                content='병원 내 AI 로봇과 환자 모니터링 시스템이 도입되었습니다.',
+                title='PACS 시스템 클라우드 전환 완료',
+                content='삼성서울병원은 PACS 시스템을 클라우드로 전환하여 비용 절감과 보안 강화를 동시에 달성했습니다.\n\n1994년 개원 당시부터 필름 없는 병원을 목표로 PACS 시스템을 도입한 이후, 약 100여 대의 장비에서 생성되는 방대한 이미지 데이터(일일 700GB, 연 143TB)를 AWS S3 클라우드 저장소를 활용하여 관리하고 있습니다.\n\nAI 기반 의료 분석 및 협력 병원과의 정보 공유라는 미래 가치를 실현하기 위한 전략적 선택으로, 약 4년에 걸쳐 진행되었으며 연간 69% 이상의 비용 절감 효과가 예상됩니다.',
                 category_id=2,
                 user_id=sample_user.id,
-                views=89
+                views=156
             ),
             Post(
-                title='새로운 팀 구성원을 환영합니다',
-                content='첨단인프라운영팀에 새로운 팀원이 합류했습니다. 환영합니다!',
-                category_id=3,
+                title='AI 기반 스마트 물류 시스템 운영',
+                content='삼성서울병원은 AI를 기반으로 한 차세대 혁신인 AI Transformation(AX)을 의료 전 영역에 도입하고 있습니다.\n\n병원 내 물류 업무 중 약 75%가 로봇을 통해 자동화되어 운영되고 있으며, 이는 다음과 같이 구성됩니다:\n\n1. AGV 기반 자동 배송: 진료재료, 약품, 소모품을 병동 간 자동 이송\n2. 스마트 카트: 실시간 재고 정보 반영 및 자동 보충\n3. 통합 관제 센터: 로봇 위치, 카트 상태, 물류 흐름 실시간 모니터링\n\n의료진의 물류 수송 업무 부담이 크게 경감되어 진료에 더욱 집중할 수 있는 환경을 조성했습니다.',
+                category_id=2,
                 user_id=sample_user.id,
-                views=45
+                views=189
+            ),
+            Post(
+                title='AI 기반 환자 위험 감시 시스템 도입',
+                content='삼성서울병원은 환자의 안전과 진료 품질을 강화하기 위해 AI 기반 환자 감시 시스템을 순차적으로 도입했습니다.\n\nEMR 및 사진 데이터를 통합 분석하여 환자 상태 변화를 탐지하고 의료진에게 조기 경보를 제공하는 지능형 안전관리 체계로, 기존 수동적 모니터링에서 벗어나 데이터 기반 예측형 감시(Predictive Monitoring)로 전환했습니다.\n\n욕창·낙상 예측 모델 및 임상 악화 예측 모델이 병실, 응급실 전 영역에 걸쳐 통합되어 중증 악화, 낙상, 욕창 등 주요 안전사고의 예방 가능성을 높였습니다.',
+                category_id=2,
+                user_id=sample_user.id,
+                views=167
+            ),
+            Post(
+                title='차세대 스마트 병실 시스템 개발',
+                content='삼성서울병원은 병실을 데이터 기반의 지능형 치료공간으로 전환하기 위한 차세대 스마트병실 시스템을 개발 중입니다.\n\n병상 내·외부에서 생성되는 생체신호, 행동, 영상, 환경 데이터를 통합하여 환자의 상태를 연속적으로 인식하고 AI를 통해 맞춤형 중재를 수행합니다.\n\n웨어러블 센서, 다중모달 AI, 아바타 인터페이스를 유기적으로 연결하여 단순한 모니터링을 넘어 병실이 하나의 지능형 진료 플랫폼으로 기능하도록 설계되어 의료진의 업무 효율성, 환자 경험, 연구 데이터 품질을 동시에 개선할 수 있습니다.',
+                category_id=2,
+                user_id=sample_user.id,
+                views=134
+            ),
+            Post(
+                title='박승우 원장, HIMSS 2025 기조연설',
+                content='박승우 삼성서울병원 원장이 미국 라스베이거스에서 열린 세계 최대 의료IT 콘퍼런스 HIMSS 2025에서 아시아 병원 최초로 기조연설을 했습니다.\n\n삼성서울병원은 HIMSS의 6개 인증 중 EMRAM, INFRAM, DIAM, AMAM 4개 분야에서 최고인 7단계를 달성했으며, 디지털헬스지표(DHI) 조사에서도 400점 만점을 기록했습니다.\n\n박 원장은 삼성 DNA와 조직원들의 혁신 마인드, 상향식 통제 대신 수평적 협업 문화를 성공의 핵심으로 강조했습니다.',
+                category_id=1,
+                user_id=sample_user.id,
+                views=312
+            ),
+            Post(
+                title='이노베이션 하스피탈10 얼라이언스(iH10) 출범',
+                content='삼성서울병원이 주도하여 글로벌 최고 수준 병원 10곳이 참여하는 이노베이션 하스피탈10 얼라이언스(iH10)를 출범했습니다.\n\n미국, 프랑스, 덴마크, 이탈리아, 홍콩, 대만 등 세계 각국의 의료기관이 참여하며, IT 프로젝트 성공사례는 물론 실패 경험까지 공유하면서 혁신 여정의 시간을 단축할 것으로 예상됩니다.\n\n한국 병원이 주도하여 세계 각국 의료기관과 IT혁신 이니셔티브를 만든 것은 이번이 처음으로, 글로벌 의료 혁신을 선도하는 삼성서울병원의 위상을 입증합니다.',
+                category_id=1,
+                user_id=sample_user.id,
+                views=223
             ),
         ]
         db.session.add_all(posts)
         db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Database initialization error: {e}")
+
+_db_initialized = False
+
+@app.before_request
+def initialize_database():
+    global _db_initialized
+    if not _db_initialized:
+        init_db()
+        _db_initialized = True
 
 @app.before_request
 def redirect_to_https():
@@ -264,6 +307,17 @@ def view_post(post_id):
 
     return render_template('post.html', post=post)
 
+@app.route('/post/<int:post_id>/delete', methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.user_id != session['user_id']:
+        return redirect(url_for('board'))
+
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('board'))
+
 @app.route('/hospital')
 def hospital():
     return render_template('hospital.html')
@@ -273,7 +327,6 @@ def developer():
     return render_template('developer.html')
 
 if __name__ == '__main__':
-    init_db()
     if os.environ.get('ENVIRONMENT') == 'production':
         app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8000)))
     else:
