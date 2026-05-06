@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - Samsung Seoul Hospital{% endblock %}
+
+{% block extra_css %}
+<style>
+    .post-container {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .post-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #eee;
+    }
+
+    .post-header h1 {
+        color: #333;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .post-metadata {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        color: #666;
+    }
+
+    .post-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #333;
+        margin-bottom: 2rem;
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+
+    .comments-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 2px solid #eee;
+    }
+
+    .comments-section h2 {
+        color: #333;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+    }
+
+    .comment-form {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+    }
+
+    .comment-form textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-family: inherit;
+        margin-bottom: 1rem;
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .comment-form button {
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: transform 0.2s;
+    }
+
+    .comment-form button:hover {
+        transform: translateY(-2px);
+    }
+
+    .comments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .comment {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+    }
+
+    .comment-author {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .comment-meta {
+        font-size: 0.85rem;
+        color: #999;
+        margin-bottom: 1rem;
+    }
+
+    .comment-content {
+        color: #555;
+        line-height: 1.6;
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+        .post-container {
+            padding: 1.5rem;
+        }
+
+        .post-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .comment-form {
+            padding: 1rem;
+        }
+
+        .comment {
+            padding: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<a href="/board" class="back-link">← 게시판으로 돌아가기</a>
+
+<div class="post-container">
+    <div class="post-header">
+        <h1>{{ post.title }}</h1>
+        <div class="post-metadata">
+            <span>작성자: {{ post.author.username }}</span>
+            <span>카테고리: {{ post.category.name }}</span>
+            <span>📅 {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+            <span>👁️ {{ post.views - 1 }}회</span>
+        </div>
+    </div>
+
+    <div class="post-content">
+        {{ post.content }}
+    </div>
+
+    <div class="comments-section">
+        <h2>💬 댓글 ({{ post.comments|length }})</h2>
+
+        <div class="comment-form">
+            <form method="POST">
+                <textarea name="content" placeholder="댓글을 입력하세요..." required></textarea>
+                <button type="submit">댓글 등록</button>
+            </form>
+        </div>
+
+        {% if post.comments %}
+        <div class="comments-list">
+            {% for comment in post.comments|reverse %}
+            <div class="comment">
+                <div class="comment-author">{{ comment.author.username }}</div>
+                <div class="comment-meta">{{ comment.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+                <div class="comment-content">{{ comment.content }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div style="text-align: center; color: #999; padding: 2rem;">
+            아직 댓글이 없습니다. 첫 댓글을 달아보세요!
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Samsung Seoul Hospital{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        nav .brand {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        nav .user-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        @media (max-width: 640px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav .brand {
+                margin-right: 0;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            nav .user-info {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+        }
+
+        {% block extra_css %}{% endblock %}
+    </style>
+</head>
+<body>
+    {% if 'user_id' in session %}
+    <nav>
+        <ul>
+            <li><a href="/" class="brand">🏥 Samsung Seoul Hospital</a></li>
+            <li><a href="/board">게시판</a></li>
+            <li><a href="/hospital">병원 정보</a></li>
+            <li><a href="/developer">개발자</a></li>
+            <li class="user-info">
+                <span>{{ session.username }}</span>
+                <a href="/logout">로그아웃</a>
+            </li>
+        </ul>
+    </nav>
+    {% endif %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
