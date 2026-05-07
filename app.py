@@ -322,6 +322,11 @@ def delete_post(post_id):
 def hospital():
     return render_template('hospital.html')
 
+@app.route('/analysis')
+@login_required
+def analysis():
+    return render_template('analysis.html')
+
 @app.route('/developer')
 def developer():
     return render_template('developer.html')
