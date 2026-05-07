@@ -51,7 +51,7 @@
             justify-content: center;
             width: 100%;
             padding: 1rem;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .signup-box {
@@ -62,17 +62,30 @@
             width: 85%;
             max-width: 320px;
             position: relative;
+            margin-top: 150px;
         }
 
         .signup-box::before {
             content: '';
             position: absolute;
-            top: -80px;
+            top: -150px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
+            width: 600px;
+            height: 600px;
             background: url('/static/images/smc-logo.png') center/contain no-repeat;
+        }
+
+        .signup-box::after {
+            content: '면접 준비앱';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
         .signup-box h1 {
