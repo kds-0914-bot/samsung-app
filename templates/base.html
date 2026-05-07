@@ -58,6 +58,15 @@
             font-weight: 600;
             white-space: nowrap;
             flex-grow: 1;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+
+        nav .brand img {
+            height: 30px;
+            width: auto;
+            display: block;
         }
 
         nav .user-info {
@@ -115,7 +124,7 @@
     {% if 'user_id' in session %}
     <nav>
         <ul>
-            <li><a href="/" class="brand">홈</a></li>
+            <li><a href="/" class="brand"><img src="/static/images/smc-logo.png" alt="SMC"></a></li>
             <li><a href="/board">게시판</a></li>
             <li><a href="/hospital">병원 정보</a></li>
             <li><a href="/developer">개발자정보</a></li>
