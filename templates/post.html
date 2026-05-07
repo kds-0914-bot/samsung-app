@@ -139,6 +139,30 @@
         text-decoration: underline;
     }
 
+    .post-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+    }
+
+    .delete-btn {
+        padding: 0.6rem 1.2rem;
+        background: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: background 0.2s;
+    }
+
+    .delete-btn:hover {
+        background: #c0392b;
+    }
+
     @media (max-width: 640px) {
         .post-container {
             padding: 1.5rem;
@@ -188,6 +212,14 @@
     <div class="post-content">
         {{ post.content }}
     </div>
+
+    {% if session.get('user_id') == post.user_id %}
+    <div class="post-actions">
+        <form method="POST" action="/post/{{ post.id }}/delete" style="display: inline;">
+            <button type="submit" class="delete-btn" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+        </form>
+    </div>
+    {% endif %}
 
     <div class="comments-section">
         <h2>💬 댓글 ({{ post.comments|length }})</h2>
