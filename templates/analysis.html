@@ -424,11 +424,13 @@
     border-radius: 12px;
     padding: 16px 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
+    text-align: center;
   }
   .net-num {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 900;
     color: var(--samsung-sky);
     font-family: 'Roboto', sans-serif;
@@ -443,7 +445,7 @@
     display: block;
     color: #0F172A;
     font-size: 13px;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
 
   /* Priority */
@@ -527,14 +529,11 @@
 <!-- ── HEADER ── -->
 <div class="header">
   <div class="header-top">
-    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-      <img src="/static/images/smc-tagline.png" alt="삼성서울병원" style="height: 32px; width: auto;">
-      <div>
-        <div class="header-label">Samsung Medical Center · Strategic Analysis</div>
-        <div class="header-title">입지 분석 & 환자 유입 전략</div>
-      </div>
+    <div>
+      <div class="header-label">Samsung Medical Center · Strategic Analysis</div>
+      <div class="header-title">입지 분석 & 환자 유입 전략</div>
+      <div class="header-sub">서울 상급종합병원 경쟁 지형 · 2024 ESG 기준 데이터</div>
     </div>
-    <div class="header-sub">서울 상급종합병원 경쟁 지형 · 2024 ESG 기준 데이터</div>
     <div class="header-stats">
       <div class="hstat">
         <div class="hstat-num">2,000</div>

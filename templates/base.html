@@ -30,13 +30,13 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.2rem;
+            gap: 0.6rem;
             max-width: 1200px;
             margin: 0 auto;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             padding: 0 1rem;
-            justify-content: space-between;
+            justify-content: flex-start;
             width: 100%;
         }
 
@@ -74,9 +74,20 @@
             display: none;
         }
 
+        nav li:nth-child(2) a {
+            font-size: 0;
+            width: 15px;
+            height: 15px;
+        }
+
+        nav li:nth-child(2) a::before {
+            content: '📋';
+            font-size: 0.8rem;
+        }
+
         nav .user-info {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             align-items: center;
             font-size: 0.8rem;
             margin-left: auto;
