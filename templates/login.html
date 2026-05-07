@@ -30,6 +30,15 @@
             font-size: 1.2rem;
             font-weight: 600;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .login-header img {
+            height: 40px;
+            width: auto;
         }
 
         .login-container {
@@ -261,7 +270,8 @@
 </head>
 <body>
     <div class="login-header">
-        📱 삼성서울병원 면접 준비앱
+        <img src="/static/images/smc-logo.png" alt="SMC">
+        <span>면접 준비앱</span>
     </div>
 
     <div class="login-container">

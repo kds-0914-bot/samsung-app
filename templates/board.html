@@ -144,11 +144,18 @@
         background-color: #f8f9fc;
     }
 
+    .post-header {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+    }
+
     .post-title {
         font-size: 0.95rem;
         font-weight: 600;
         color: #2c3e50;
         line-height: 1.4;
+        flex: 1;
     }
 
     .post-title a {
@@ -175,7 +182,7 @@
         gap: 0.3rem;
     }
 
-    .post-meta .category-badge {
+    .category-badge {
         background: #f0f3f7;
         padding: 0.2rem 0.5rem;
         border-radius: 10px;
@@ -184,6 +191,7 @@
         font-weight: 600;
         white-space: nowrap;
         border: 1px solid #e0e6ed;
+        flex-shrink: 0;
     }
 
     .empty-state {
@@ -239,8 +247,13 @@
             flex-wrap: wrap;
         }
 
-        .post-meta .category-badge {
+        .category-badge {
             font-size: 0.56rem;
+        }
+
+        .post-header {
+            flex-direction: column;
+            align-items: flex-start;
         }
     }
 </style>
@@ -270,11 +283,13 @@
     {% if posts %}
         {% for post in posts %}
         <div class="post-item">
-            <div class="post-title">
-                <a href="/post/{{ post.id }}">{{ post.title }}</a>
+            <div class="post-header">
+                <span class="category-badge">{{ post.category.name }}</span>
+                <div class="post-title">
+                    <a href="/post/{{ post.id }}">{{ post.title }}</a>
+                </div>
             </div>
             <div class="post-meta">
-                <span class="category-badge">{{ post.category.name }}</span>
                 <span>{{ post.author.username }}</span>
                 <span>{{ post.created_at.strftime('%m-%d %H:%M') }}</span>
                 <span>조회 {{ post.views }}</span>
