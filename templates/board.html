@@ -148,6 +148,14 @@
         display: flex;
         gap: 0.6rem;
         align-items: center;
+        justify-content: space-between;
+    }
+
+    .post-header-left {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        flex: 1;
     }
 
     .post-title {
@@ -170,16 +178,19 @@
 
     .post-meta {
         display: flex;
-        gap: 0.8rem;
+        gap: 1.2rem;
         align-items: center;
         font-size: 0.75rem;
         color: #888;
+        justify-content: flex-end;
+        flex-shrink: 0;
     }
 
     .post-meta span {
         display: flex;
         align-items: center;
         gap: 0.3rem;
+        white-space: nowrap;
     }
 
     .category-badge {
@@ -284,15 +295,17 @@
         {% for post in posts %}
         <div class="post-item">
             <div class="post-header">
-                <span class="category-badge">{{ post.category.name }}</span>
-                <div class="post-title">
-                    <a href="/post/{{ post.id }}">{{ post.title }}</a>
+                <div class="post-header-left">
+                    <span class="category-badge">{{ post.category.name }}</span>
+                    <div class="post-title">
+                        <a href="/post/{{ post.id }}">{{ post.title }}</a>
+                    </div>
                 </div>
-            </div>
-            <div class="post-meta">
-                <span>{{ post.author.username }}</span>
-                <span>{{ post.created_at.strftime('%m-%d %H:%M') }}</span>
-                <span>조회 {{ post.views }}</span>
+                <div class="post-meta">
+                    <span>작성자: {{ post.author.username }}</span>
+                    <span>작성일시: {{ post.created_at.strftime('%m-%d %H:%M') }}</span>
+                    <span>조회 {{ post.views }}</span>
+                </div>
             </div>
         </div>
         {% endfor %}
