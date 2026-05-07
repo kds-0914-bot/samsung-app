@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #5f6fbf 0%, #4a5aa0 100%);
+            background: #f5f7fc !important;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -61,12 +61,20 @@
             display: flex;
             align-items: center;
             height: 40px;
+            gap: 10px;
         }
 
         nav .brand img {
             height: 30px;
             width: auto;
             display: block;
+        }
+
+        nav .brand-text {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
         nav .user-info {
@@ -124,7 +132,7 @@
     {% if 'user_id' in session %}
     <nav>
         <ul>
-            <li><a href="/" class="brand"><img src="/static/images/smc-logo.png" alt="SMC"></a></li>
+            <li><a href="/" class="brand"><img src="/static/images/smc-tagline.png" alt="SMC"><span class="brand-text">면접 준비앱</span></a></li>
             <li><a href="/board">게시판</a></li>
             <li><a href="/hospital">병원 정보</a></li>
             <li><a href="/analysis">분석</a></li>
