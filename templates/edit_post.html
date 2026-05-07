@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}글 수정 - Samsung Seoul Hospital{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background: #f5f7fc !important;
+    }
+
+    .edit-post-container {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .edit-post-container h1 {
+        color: #333;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 300px;
+    }
+
+    .form-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .form-buttons button,
+    .form-buttons a {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-buttons button[type="submit"] {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        flex: 1;
+    }
+
+    .form-buttons button[type="submit"]:hover {
+        transform: translateY(-2px);
+    }
+
+    .form-buttons a {
+        background: #f0f0f0;
+        color: #333;
+        flex: 1;
+    }
+
+    .form-buttons a:hover {
+        transform: translateY(-2px);
+    }
+
+    .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 0.75rem;
+        border-radius: 5px;
+        margin-bottom: 1.5rem;
+        border: 1px solid #f5c6cb;
+    }
+
+    @media (max-width: 640px) {
+        .edit-post-container {
+            padding: 1.5rem;
+        }
+
+        .edit-post-container h1 {
+            font-size: 1.5rem;
+        }
+
+        .form-buttons {
+            flex-direction: column;
+        }
+
+        .form-buttons button,
+        .form-buttons a {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="edit-post-container">
+    <h1>✏️ 글 수정</h1>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="category_id">카테고리</label>
+            <select id="category_id" name="category_id" required>
+                <option value="">카테고리를 선택하세요</option>
+                {% for category in categories %}
+                <option value="{{ category.id }}" {% if category.id == post.category_id %}selected{% endif %}>{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" placeholder="글의 제목을 입력하세요" value="{{ post.title }}" required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="content">내용</label>
+            <textarea id="content" name="content" placeholder="글의 내용을 입력하세요" required>{{ post.content }}</textarea>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit">💾 수정하기</button>
+            <a href="/post/{{ post.id }}">취소</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

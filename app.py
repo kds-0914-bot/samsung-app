@@ -307,6 +307,33 @@ def view_post(post_id):
 
     return render_template('post.html', post=post)
 
+@app.route('/post/<int:post_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.user_id != session['user_id']:
+        return redirect(url_for('board'))
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+        category_id = request.form.get('category_id', type=int)
+
+        if not title or not content or not category_id:
+            categories = Category.query.all()
+            return render_template('edit_post.html', post=post, categories=categories, error='All fields are required')
+
+        post.title = title
+        post.content = content
+        post.category_id = category_id
+        post.updated_at = datetime.utcnow()
+        db.session.commit()
+
+        return redirect(url_for('view_post', post_id=post.id))
+
+    categories = Category.query.all()
+    return render_template('edit_post.html', post=post, categories=categories)
+
 @app.route('/post/<int:post_id>/delete', methods=['POST'])
 @login_required
 def delete_post(post_id):
