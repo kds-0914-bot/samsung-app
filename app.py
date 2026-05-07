@@ -85,7 +85,7 @@ def init_db():
         # Create sample user
         sample_user = User(
             username='김대석',
-            password=generate_password_hash('demo123'),
+            password=generate_password_hash('1234'),
             email='kimdaesuk@naver.com'
         )
         db.session.add(sample_user)
